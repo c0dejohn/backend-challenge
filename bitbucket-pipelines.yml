@@ -23,10 +23,5 @@ pipelines:
             caches:
               - node
               
-        - step:
-           name: Deploy to test
-           deployment: test
-          # trigger: manual  # Uncomment to make this a manual deployment.
-           script:
-            - echo "Deploying to test environment"
+  
             
