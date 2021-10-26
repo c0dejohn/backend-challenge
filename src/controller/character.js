@@ -55,7 +55,7 @@ exports.findOne = async (req, res) => {
 };
 
 // Update a Character by the id in the request
-exports.update = (req, res) => {};
-
-// Delete a Character with the specified id in the request
-exports.delete = (req, res) => {};
+//exports.update = (req, res) => {};
+//
+//// Delete a Character with the specified id in the request
+//exports.delete = (req, res) => {};
