@@ -22,7 +22,7 @@ exports.create = async (req, res) => {
     });
     res.status(201).json({ data: result, message: 'Character created' });
   } catch (error) {
-    logger.error(error);
+    logger.info(error);
     res.status(500).send(error.errors.map((e) => e.message));
   }
 };
@@ -57,7 +57,7 @@ exports.findOne = async (req, res, next) => {
 exports.findByName = async (req, res, next) => {
   try {
     const name = req.query.name;
-    console.log('hola');
+    logger.info(name);
     const result = await Character.findOne({ where: { name: name } });
     res.status(200).json({ data: result });
   } catch (error) {

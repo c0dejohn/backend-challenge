@@ -21,7 +21,7 @@ const corsOptions = {
 //middlewares
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
 const db = require('./src/models');
