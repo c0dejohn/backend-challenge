@@ -27,44 +27,6 @@ exports.create = async (req, res) => {
   }
 };
 
-// Retrieve all Characters from the database.
-exports.findAll = (req, res) => {
-  Character.findAll({
-    attributes: ['image', 'name'],
-  })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || 'Some error occurred while retrieving Characters.',
-      });
-    });
-};
-
-// Find a single Character with an id
-exports.findOne = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const result = await Character.findByPk(id);
-    res.status(200).json({ data: result });
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.findByName = async (req, res, next) => {
-  try {
-    const name = req.query.name;
-    console.log('hola');
-    const result = await Character.findOne({ where: { name: name } });
-    res.status(200).json({ data: result });
-  } catch (error) {
-    next(error);
-  }
-};
-
 // Update a Character by the id in the request
 exports.update = async (req, res, next) => {
   try {
