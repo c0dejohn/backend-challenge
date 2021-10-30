@@ -11,6 +11,7 @@ exports.create = async (req, res) => {
       history,
       weight,
       associatedFilms,
+      filmId,
     } = await req.body;
     const result = await Character.create({
       image: image,
@@ -19,6 +20,7 @@ exports.create = async (req, res) => {
       history: history,
       weight: weight,
       associatedFilms: associatedFilms,
+      filmId: filmId,
     });
     res.status(201).json({ data: result, message: 'Character created' });
   } catch (error) {
@@ -54,12 +56,32 @@ exports.findOne = async (req, res, next) => {
   }
 };
 
-exports.findByName = async (req, res, next) => {
+exports.findByFilter = async (req, res, next) => {
   try {
-    const name = req.query.name;
-    logger.info(name);
-    const result = await Character.findOne({ where: { name: name } });
-    res.status(200).json({ data: result });
+    const { name, age, movies } = req.query;
+    logger.info(movies);
+    const key = name || age || movies;
+    switch (key) {
+      case name: {
+        const nameResult = await Character.findOne({ where: { name: name } });
+        res.status(200).json({ data: nameResult });
+        break;
+      }
+      case age: {
+        const ageResult = await Character.findAll({ where: { age: age } });
+        res.status(200).json({ data: ageResult });
+        break;
+      }
+      case movies: {
+        const movieResult = await Character.findAll({
+          where: { filmId: parseInt(movies) },
+        });
+        res.status(200).json({ data: movieResult });
+        break;
+      }
+      default:
+        break;
+    }
   } catch (error) {
     next(error);
   }
