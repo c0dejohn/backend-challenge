@@ -2,11 +2,15 @@ const { logger } = require('../utils/logger');
 const db = require('../models');
 const bcrypt = require('bcrypt');
 const User = db.user;
-
+const boom = require('@hapi/boom');
 exports.create = async (req, res) => {
   try {
     const { email, password, role } = await req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hashSync(
+      password,
+      bcrypt.genSaltSync(10),
+      null
+    );
     await User.create({
       email: email,
       password: hashedPassword,
@@ -19,20 +23,23 @@ exports.create = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
   try {
     const { email, password } = await req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const result = await User.findOne({
-      where: {
-        email: email,
-        password: hashedPassword,
-      },
+    let user = await User.findOne({
+      where: { email: email },
     });
-    if (result === null || result === undefined) {
-      res.status(401).json({ message: 'Login failed' });
+
+    const pass = user.dataValues.password;
+    const validUser = user.dataValues.email;
+    if (!user) {
+      return next(boom.unauthorized());
+    }
+    if (user.dataValues.email == email && bcrypt.compare(password, pass)) {
+      req.session.user = validUser;
+      res.status(202).json({ message: 'User logged in' });
     } else {
-      res.status(202).json({ message: 'Login success' });
+      return next(boom.unauthorized());
     }
   } catch (error) {
     logger.error(error);
@@ -43,7 +50,7 @@ exports.login = async (req, res) => {
 exports.register = async (req, res) => {
   try {
     const { email, password } = await req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = bcrypt.hashSync(password, 10);
     await User.create({
       email: email,
       password: hashedPassword,
@@ -56,9 +63,14 @@ exports.register = async (req, res) => {
   }
 };
 
+exports.logout = (req, res) => {
+  req.session.destroy();
+  res.status(200).json({ message: 'User logged out' });
+};
+
 exports.read = (req, res) => {
   User.findAll({
-    attributes: ['id', 'email', 'role'],
+    attributes: ['id', 'email', 'role', 'password'],
   })
     .then((data) => {
       res.send(data);

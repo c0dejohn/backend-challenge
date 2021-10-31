@@ -1,29 +1,43 @@
-# README #
+## Overview
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### Requirements
 
-### What is this repository for? ###
+- Nodejs v12.13.x
+- NPM 7.1x.x
+- postgres
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Build
 
-### How do I get set up? ###
+- Develop installation
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+```
+1. Download repository.
+2. Run command npm install on project root.
+3. Run command docker-compose up (or up -d for detached).
+4. make request on 5000.
+5. Postgres binding port: 5432
+```
 
-### Contribution guidelines ###
+- Install dependencies
 
-* Writing tests
-* Code review
-* Other guidelines
+  ```
+  npm install
+  ```
 
-### Who do I talk to? ###
+- Run locally
 
-* Repo owner or admin
-* Other community or team contact
+  ```
+  npm run dev
+  ```
+
+- Build in container
+
+  ```
+  docker build -t backend_challenge -f Dockerfile .
+  ```
+
+### Documentation
+
+### Contributors
+
+- John Manyoma

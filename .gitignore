@@ -52,7 +52,6 @@ Thumbs.db
 .history/
 .fake
 .ionide
-.env
 .vscode/
 package-lock.json
 .postgres-volume/
