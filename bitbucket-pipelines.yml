@@ -12,6 +12,7 @@ pipelines:
             name: Code linting
             script:
               - npm install eslint
+              - npm install --save-dev eslint-config-prettier
               - npx eslint .
             caches:
               - node
