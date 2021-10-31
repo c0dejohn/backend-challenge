@@ -19,8 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       history: DataTypes.STRING,
       weight: DataTypes.FLOAT,
-      associatedFilms: DataTypes.ARRAY(DataTypes.STRING),
-      filmId: DataTypes.INTEGER,
+      associatedMovies: DataTypes.ARRAY(DataTypes.STRING),
     },
     {
       timestamps: true,

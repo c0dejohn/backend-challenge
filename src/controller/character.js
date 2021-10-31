@@ -4,23 +4,16 @@ const Character = db.character;
 
 exports.create = async (req, res) => {
   try {
-    const {
-      image,
-      name,
-      age,
-      history,
-      weight,
-      associatedFilms,
-      filmId,
-    } = await req.body;
+    const { image, name, age, history, weight, associatedMovie, movieId } =
+      await req.body;
     const result = await Character.create({
       image: image,
       name: name,
       age: age,
       history: history,
       weight: weight,
-      associatedFilms: associatedFilms,
-      filmId: filmId,
+      associatedMovies: associatedMovie,
+      movieId: movieId,
     });
     res.status(201).json({ data: result, message: 'Character created' });
   } catch (error) {
@@ -91,7 +84,7 @@ exports.findByFilter = async (req, res, next) => {
 exports.update = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { image, name, age, history, weight, associatedFilms } = req.body;
+    const { image, name, age, history, weight, associatedMovies } = req.body;
     const result = await Character.update(
       {
         image: image,
@@ -99,7 +92,7 @@ exports.update = async (req, res, next) => {
         age: age,
         history: history,
         weight: weight,
-        associatedFilms: associatedFilms,
+        associatedMovies: associatedMovies,
       },
       {
         where: {

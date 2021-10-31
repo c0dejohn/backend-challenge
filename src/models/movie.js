@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'film',
+    'movie',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       releaseDate: DataTypes.DATE,
       associatedCharacters: DataTypes.ARRAY(DataTypes.STRING),
-      characterId: DataTypes.INTEGER,
+      genreId: DataTypes.INTEGER,
     },
 
     {

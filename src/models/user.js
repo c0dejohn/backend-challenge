@@ -3,11 +3,10 @@ module.exports = (sequelize, DataTypes) => {
     'user',
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true,
+        defaultValue: DataTypes.UUIDV1,
       },
-      username: DataTypes.STRING,
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -15,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isEmail: true },
       },
       password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      role: {
         type: DataTypes.STRING,
         allowNull: false,
       },

@@ -26,16 +26,16 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.character = require('./character.js')(sequelize, Sequelize);
-db.film = require('./film.js')(sequelize, Sequelize);
+db.movie = require('./movie.js')(sequelize, Sequelize);
 db.user = require('./user.js')(sequelize, Sequelize);
-db.filmgenre = require('./filmgenre.js')(sequelize, Sequelize);
+db.movieGenre = require('./movieGenre.js')(sequelize, Sequelize);
 
-db.film.belongsTo(db.character, {
+db.movie.belongsTo(db.character, {
   foreignKey: 'characterId',
   sourceKey: 'id',
 });
-db.filmgenre.belongsTo(db.film, {
-  foreignKey: 'filmId',
+db.movieGenre.belongsTo(db.movie, {
+  foreignKey: 'movieId',
   sourceKey: 'id',
 });
 

@@ -1,5 +1,10 @@
 const express = require('express');
 const characterRouter = require('./src/routes/character.routes');
+const movieRouter = require('./src/routes/movie.routes');
+const genreRouter = require('./src/routes/movieGenre.routes');
+const userRouter = require('./src/routes/user.routes');
+const authRouter = require('./src/routes/auth.routes');
+
 const {
   logErrors,
   errorHandler,
@@ -9,7 +14,7 @@ const {
 const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
-const PREFIX = '/api/my-disney';
+const PREFIX = '/api/my-disney/';
 const { PORT, NODE_ENV } = require('./src/config/index');
 const { logger } = require('./src/utils/logger');
 const { checkAPIKey } = require('./src/middlewares/auth.handler');
@@ -27,7 +32,7 @@ app.use(cors(corsOptions));
 const db = require('./src/models');
 
 if (NODE_ENV === 'development') {
-  db.sequelize.sync({ force: false }).then(() => {
+  db.sequelize.sync({ force: true }).then(() => {
     logger.info('Database synced');
   });
 } else {
@@ -39,12 +44,18 @@ app.get(`${PREFIX}/health`, checkAPIKey, (req, res) => {
 });
 
 app.use(PREFIX, checkAPIKey, characterRouter);
+app.use(PREFIX, checkAPIKey, movieRouter);
+app.use(PREFIX, checkAPIKey, genreRouter);
+app.use(PREFIX, checkAPIKey, userRouter);
+app.use(PREFIX, authRouter);
 
 app.use(logErrors);
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-app.listen(PORT, async () => {
+const server = app.listen(PORT, async () => {
   logger.info(`Listening on port: http://localhost:${PORT}`);
 });
+
+module.exports = { app, server };

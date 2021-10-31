@@ -10,7 +10,7 @@
     "jest": true
   },
   "rules": {
-    "no-console": "warn",
-    "comma-dangle": ["error", { "objects": "only-multiline" }]
+    "no-console": "warn"
+    // "comma-dangle": ["error", { "objects": "only-multiline" }]
   }
 }
