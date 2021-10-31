@@ -6,6 +6,7 @@
 # Node artifact files
 node_modules/
 dist/
+dev.sqlite3
 
 # Compiled Java class files
 *.class
@@ -48,3 +49,9 @@ Thumbs.db
 *.mov
 *.wmv
 
+.history/
+.fake
+.ionide
+.vscode/
+package-lock.json
+.postgres-volume/
