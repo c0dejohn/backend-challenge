@@ -38,8 +38,8 @@
 
 ### Documentation
 
-https://web.postman.co/workspace/My-Workspace~40b74f5c-21d0-4c6d-851c-6fd1306eb984/documentation/8141743-25e679ac-176b-4a98-a75f-3c552f933c61
+https://documenter.getpostman.com/view/12538693/TzRLkqFX
 
 ### Contributors
 
-- John Manyoma
+- Edwin Manyoma
