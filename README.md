@@ -30,12 +30,6 @@
   npm run dev
   ```
 
-- Build in container
-
-  ```
-  docker build -t backend_challenge -f Dockerfile .
-  ```
-
 ### Documentation
 
 https://documenter.getpostman.com/view/8141743/UVByHpg7

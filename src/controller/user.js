@@ -3,6 +3,7 @@ const db = require('../models');
 const bcrypt = require('bcrypt');
 const User = db.user;
 const boom = require('@hapi/boom');
+
 exports.create = async (req, res) => {
   try {
     const { email, password, role } = await req.body;
@@ -59,7 +60,7 @@ exports.register = async (req, res) => {
     res.status(201).json({ message: 'User created' });
   } catch (error) {
     logger.error(error);
-    res.status(500).send(error.errors.map((e) => e.message));
+    res.status(500).send(error.errors);
   }
 };
 
