@@ -2,7 +2,11 @@ name: Build
 on:
   push:
     branches:
+<<<<<<< HEAD
       - main # or the name of your main branch
+=======
+      - develop # or the name of your main branch
+>>>>>>> develop
 jobs:
   build:
     name: Build
@@ -11,7 +15,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+<<<<<<< HEAD
       - uses: sonarsource/sonarqube-scan-action@main
+=======
+      - uses: sonarsource/sonarqube-scan-action@master
+>>>>>>> develop
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -20,4 +28,8 @@ jobs:
       # - uses: sonarsource/sonarqube-quality-gate-action@master
       #   timeout-minutes: 5
       #   env:
+<<<<<<< HEAD
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+=======
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+>>>>>>> develop
