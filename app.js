@@ -49,7 +49,7 @@ if (NODE_ENV === 'development') {
 app.get(`${PREFIX}health`, (req, res) => {
   res.status(200).send({ status: 'OK' });
 });
-app.use(PREFIX, authRouter);
+app.use(PREFIX, auth, authRouter);
 app.use(PREFIX, auth, characterRouter);
 app.use(PREFIX, auth, movieRouter);
 app.use(PREFIX, auth, genreRouter);
@@ -59,6 +59,8 @@ app.use(logErrors);
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 
-app.listen(PORT, async () => {
+const server = app.listen(PORT, async () => {
   logger.info(`Listening on port: http://localhost:${PORT}`);
 });
+
+module.exports = { app, server };
