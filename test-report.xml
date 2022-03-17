@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/media/c0d3john/alistar1/Documents/dev/backend-challenge/test/character.test.js">
+    <testCase name="Character Controller GET /health server status" duration="29">
+      <failure message="Error: listen EADDRINUSE: address already in use :::5000"><![CDATA[Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1334:16)
+    at listenInCluster (node:net:1382:12)
+    at Server.listen (node:net:1469:7)
+    at Function.listen (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/express/lib/application.js:618:24)
+    at Object.<anonymous> (/media/c0d3john/alistar1/Documents/dev/backend-challenge/app.js:62:20)
+    at Runtime._execModule (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/jest-runtime/build/index.js:1646:24)
+    at Runtime._loadModule (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/jest-runtime/build/index.js:1185:12)
+    at Runtime.requireModule (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/jest-runtime/build/index.js:1009:12)
+    at Runtime.require [as requireModuleOrMock] (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/jest-runtime/build/index.js:1210:21)
+    at Object.<anonymous> (/media/c0d3john/alistar1/Documents/dev/backend-challenge/test/character.test.js:7:25)]]></failure>
+    </testCase>
+  </file>
+</testExecutions>
