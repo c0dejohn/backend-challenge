@@ -14,7 +14,7 @@ const {
 const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
-const PREFIX = '/api/my-disney/';
+const PREFIX = '/api/';
 const { PORT, NODE_ENV } = require('./src/config/index');
 const { logger } = require('./src/utils/logger');
 const { auth } = require('./src/middlewares/auth.handler');
