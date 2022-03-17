@@ -1,28 +1,12 @@
 const { logger } = require('../utils/logger');
 const db = require('../models');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars');
 const User = db.user;
 const boom = require('@hapi/boom');
-
-exports.create = async (req, res) => {
-  try {
-    const { email, password, role } = await req.body;
-    const hashedPassword = await bcrypt.hashSync(
-      password,
-      bcrypt.genSaltSync(10),
-      null
-    );
-    await User.create({
-      email: email,
-      password: hashedPassword,
-      role: role,
-    });
-    res.status(201).json({ message: 'User created' });
-  } catch (error) {
-    logger.error(error);
-    res.status(500).send(error.errors.map((e) => e.message));
-  }
-};
+const path = require('path');
+require('dotenv').config();
 
 exports.login = async (req, res, next) => {
   try {
@@ -57,7 +41,7 @@ exports.register = async (req, res) => {
       password: hashedPassword,
       role: 'user',
     });
-    res.status(201).json({ message: 'User created' });
+    res.status(201).json({ message: _sendMessage(email) });
   } catch (error) {
     logger.error(error);
     res.status(500).send(error.errors);
@@ -118,4 +102,53 @@ exports.delete = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+const clientId = process.env.OAUTH_CLIENTID;
+const clientSecret = process.env.OAUTH_CLIENT_SECRET;
+const refreshToken = process.env.OAUTH_REFRESH_TOKEN;
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    type: 'OAuth2',
+    user: 'johnmcloudev@gmail.com',
+    clientId: clientId,
+    clientSecret: clientSecret,
+    refreshToken: refreshToken,
+    // accessToken: myAccessToken,
+  },
+});
+
+const handlebarOptions = {
+  viewEngine: {
+    partialsDir: path.resolve('./views/'),
+    defaultLayout: false,
+  },
+  viewPath: path.resolve('./views/'),
+};
+
+const _sendMessage = (userEmail) => {
+  // use a template file with nodemailer
+  transporter.use('compile', hbs(handlebarOptions));
+  const user = process.env.USER;
+  const mailOptions = {
+    from: user,
+    to: userEmail,
+    subject: 'Welcome',
+    template: 'email',
+    context: {
+      name: 'User',
+      company: 'Acme',
+    },
+  };
+
+  // trigger the sending of the E-mail
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      return console.log(error);
+    }
+    console.warn('Message sent: ' + info.response);
+  });
+  return 'User created';
 };
