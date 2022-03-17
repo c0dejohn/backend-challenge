@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
     <file path="/media/c0d3john/alistar1/Documents/dev/backend-challenge/test/character.test.js">
-        <testCase name="Character Controller server status" duration="1"/>
+        <testCase name="Character Controller server status" duration="3"/>
     </file>
 </testExecutions>

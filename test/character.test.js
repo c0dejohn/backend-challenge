@@ -3,12 +3,13 @@
 /**
  * @jest-environment node
  */
-const { expect } = require('chai');
+
 const { sum } = require('../src/controller/character');
 describe('Character Controller', () => {
   // health
 
   test('server status', () => {
-    expect(sum(1, 2)).to.be.equal(3);
+    const result = sum(1, 2);
+    expect(result).toBe(3);
   });
 });
