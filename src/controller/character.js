@@ -106,7 +106,7 @@ exports.update = async (req, res, next) => {
   }
 };
 
-//// Delete a Character with the specified id in the request
+// Delete a Character with the specified id in the request
 exports.delete = async (req, res, next) => {
   try {
     const id = req.params.id;
