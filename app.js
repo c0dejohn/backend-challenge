@@ -59,8 +59,6 @@ app.use(logErrors);
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 
-const server = app.listen(PORT, async () => {
+app.listen(PORT, async () => {
   logger.info(`Listening on port: http://localhost:${PORT}`);
 });
-
-module.exports = { app, server };

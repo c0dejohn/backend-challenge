@@ -120,3 +120,7 @@ exports.delete = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.sum = (a, b) => {
+  return a + b;
+};

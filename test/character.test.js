@@ -3,23 +3,12 @@
 /**
  * @jest-environment node
  */
-const request = require('supertest');
-const { app, server } = require('../app');
-
+const { expect } = require('chai');
+const { sum } = require('../src/controller/character');
 describe('Character Controller', () => {
   // health
-  afterAll(() => {
-    server.close();
-  });
-  describe('GET /health', () => {
-    jest.setTimeout(10000);
-    test('server status', (done) => {
-      request(app)
-        .get('/api/health')
-        .end((err, res) => {
-          expect(res.status).toBe(200);
-          err ? done(err) : done();
-        });
-    });
+
+  test('server status', () => {
+    expect(sum(1, 2)).to.be.equal(3);
   });
 });
