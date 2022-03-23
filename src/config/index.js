@@ -2,7 +2,7 @@ require('dotenv').config();
 
 module.exports = {
   PORT: process.env.PORT || 8080,
-  NODE_ENV: process.env.NODE_ENV || 'development',
+  NODE_ENV: process.env.NODE_ENV,
   DB_USERNAME: process.env.POSTGRES_USER,
   DB_PASSWORD: process.env.POSTGRES_PASSWORD,
   DATABASE: process.env.POSTGRES_DB,

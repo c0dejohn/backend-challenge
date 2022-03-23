@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
     <file path="/media/c0d3john/alistar1/Documents/dev/backend-challenge/test/character.test.js">
-        <testCase name="Character Controller server status" duration="1"/>
+        <testCase name="Character Controller server status" duration="4">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 3
+Received: 2
+    at Object.<anonymous> (/media/c0d3john/alistar1/Documents/dev/backend-challenge/test/character.test.js:13:20)
+    at Promise.then.completed (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/jest-circus/build/utils.js:391:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/jest-circus/build/utils.js:316:10)
+    at _callCircusTest (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/jest-circus/build/run.js:218:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/jest-circus/build/run.js:155:3)
+    at _runTestsForDescribeBlock (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/jest-circus/build/run.js:66:9)
+    at _runTestsForDescribeBlock (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/jest-circus/build/run.js:60:9)
+    at run (/media/c0d3john/alistar1/Documents/dev/backend-challenge/node_modules/jest-circus/build/run.js:25:3)]]></failure>
+        </testCase>
     </file>
 </testExecutions>

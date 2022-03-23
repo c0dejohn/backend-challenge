@@ -32,6 +32,7 @@ module.exports = {
     password: env.DB_PASSWORD,
     database: env.DATABASE,
     host: env.DB_HOST,
+    port: env.DB_PORT,
     dialect: env.DIALECT,
     operatorsAliases: false,
     pool: {

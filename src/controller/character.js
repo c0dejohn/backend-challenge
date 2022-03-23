@@ -122,5 +122,5 @@ exports.delete = async (req, res, next) => {
 };
 
 exports.sum = (a, b) => {
-  return a + b;
+  return a * b;
 };

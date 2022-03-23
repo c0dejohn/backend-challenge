@@ -146,9 +146,9 @@ const _sendMessage = (userEmail) => {
   // trigger the sending of the E-mail
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      return console.log(error);
+      return logger.log(error);
     }
-    console.warn('Message sent: ' + info.response);
+    logger.warn('Message sent: ' + info.response);
   });
   return 'User created';
 };
