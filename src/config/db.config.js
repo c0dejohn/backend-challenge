@@ -32,14 +32,21 @@ module.exports = {
     password: env.DB_PASSWORD,
     database: env.DATABASE,
     host: env.DB_HOST,
-    port: env.DB_PORT,
     dialect: env.DIALECT,
     operatorsAliases: false,
+    define: {
+      freezeTableName: true,
+    },
     pool: {
       max: 5,
       min: 0,
       acquire: 30000,
       idle: 10000,
+    },
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
     },
   },
 };

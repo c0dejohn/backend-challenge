@@ -10,12 +10,20 @@ const sequelize = new Sequelize(
     host: dbConfig[NODE_ENV].host,
     dialect: dbConfig[NODE_ENV].dialect,
     operatorsAliases: false,
+    define: {
+      freezeTableName: true,
+    },
     logging: false,
     pool: {
       max: dbConfig[NODE_ENV].pool.max,
       min: dbConfig[NODE_ENV].pool.min,
       acquire: dbConfig[NODE_ENV].pool.acquire,
       idle: dbConfig[NODE_ENV].pool.idle,
+    },
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
     },
   }
 );

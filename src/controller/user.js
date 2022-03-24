@@ -41,7 +41,7 @@ exports.register = async (req, res) => {
       password: hashedPassword,
       role: 'user',
     });
-    res.status(201).json({ message: _sendMessage(email) });
+    await res.status(201).json({ message: _sendMessage(email) });
   } catch (error) {
     logger.error(error);
     res.status(500).send(error.errors);
@@ -146,9 +146,9 @@ const _sendMessage = (userEmail) => {
   // trigger the sending of the E-mail
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      return logger.log(error);
+      return logger.error(error);
     }
-    logger.warn('Message sent: ' + info.response);
+    logger.info('Message sent: ' + info.response);
   });
   return 'User created';
 };

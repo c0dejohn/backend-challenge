@@ -49,7 +49,7 @@ if (NODE_ENV === 'development') {
 app.get(`${PREFIX}health`, (req, res) => {
   res.status(200).send({ status: 'OK' });
 });
-app.use(PREFIX, auth, authRouter);
+app.use(PREFIX, authRouter);
 app.use(PREFIX, auth, characterRouter);
 app.use(PREFIX, auth, movieRouter);
 app.use(PREFIX, auth, genreRouter);
